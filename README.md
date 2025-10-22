@@ -153,39 +153,6 @@ GET /api/reports?start_date=${[ dateAdd(-30) ]}&end_date=${[ dateAdd(0) ]}
 }
 ```
 
-## Development
-
-### Project Structure
-
-```
-yaak-plugin-dateadd/
-├── src/
-│   └── index.ts          # Plugin source code
-├── package.json          # Package configuration
-├── tsconfig.json         # TypeScript configuration
-└── README.md            # This file
-```
-
-### Building
-
-```bash
-npm run build
-```
-
-### Development Mode
-
-```bash
-npm run dev
-```
-
-## Comparison with Insomnia DateAdd
-
-This plugin is inspired by the [DateAdd plugin for Insomnia](https://github.com/SebBrookfield/DateAdd) by SebBrookfield. It provides similar functionality for Yaak users:
-
-- Same parameter structure (days, months, years, format)
-- Support for negative values
-- Compatible format tokens (no external dependencies like moment.js)
-
 ## License
 
 MIT
