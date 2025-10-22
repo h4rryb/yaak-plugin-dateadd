@@ -82,13 +82,21 @@ var plugin = {
         let date;
         const baseDateTimeStr = args.values.dateTime?.trim();
         if (baseDateTimeStr) {
-          const parsedDate = new Date(baseDateTimeStr);
+          let parsedDate;
+          const hasTimezone = /Z|[+-]\d{2}:\d{2}$|[+-]\d{4}$/.test(baseDateTimeStr);
+          if (hasTimezone) {
+            parsedDate = new Date(baseDateTimeStr);
+          } else {
+            const normalizedStr = baseDateTimeStr.replace("T", " ");
+            parsedDate = new Date(normalizedStr);
+          }
           if (isNaN(parsedDate.getTime())) {
             throw new Error(`Invalid date/time format: "${baseDateTimeStr}". Please use ISO 8601 format or a valid date string.`);
           }
           date = parsedDate;
         } else {
           date = /* @__PURE__ */ new Date();
+          date = new Date(Date.now());
         }
         const years = Number(args.values.years) || 0;
         const months = Number(args.values.months) || 0;

@@ -62,14 +62,31 @@ export const plugin: PluginDefinition = {
         
         if (baseDateTimeStr) {
           // Try to parse the provided date/time
-          const parsedDate = new Date(baseDateTimeStr);
+          // If no timezone info is provided, treat it as local time
+          let parsedDate: Date;
+          
+          // Check if the string contains timezone information
+          const hasTimezone = /Z|[+-]\d{2}:\d{2}$|[+-]\d{4}$/.test(baseDateTimeStr);
+          
+          if (hasTimezone) {
+            // Has timezone info, parse normally
+            parsedDate = new Date(baseDateTimeStr);
+          } else {
+            // No timezone info - treat as local time
+            // Replace 'T' with space for better parsing if present
+            const normalizedStr = baseDateTimeStr.replace('T', ' ');
+            parsedDate = new Date(normalizedStr);
+          }
+          
           if (isNaN(parsedDate.getTime())) {
             throw new Error(`Invalid date/time format: "${baseDateTimeStr}". Please use ISO 8601 format or a valid date string.`);
           }
           date = parsedDate;
         } else {
-          // Use current date/time
+          // Use current date/time - ensure we get the actual current moment
           date = new Date();
+          // Force refresh by getting time in milliseconds and recreating
+          date = new Date(Date.now());
         }
 
         // Parse all the adjustment values
