@@ -13,43 +13,12 @@ A Yaak template function plugin that allows you to manipulate dates by adding da
 
 ## Installation
 
-### Option 1: Manual Installation (Development)
+### From Yaak Settings
 
-1. Install the Yaak CLI:
-```bash
-npm install -g @yaakapp/cli
-```
-
-2. Clone or create the plugin directory:
-```bash
-mkdir yaak-plugin-dateadd
-cd yaak-plugin-dateadd
-```
-
-3. Copy the plugin files (`package.json`, `tsconfig.json`, and `src/index.ts`) to this directory
-
-4. Install dependencies:
-```bash
-npm install
-```
-
-5. Build the plugin:
-```bash
-npm run build
-```
-
-6. Install the plugin in Yaak:
-   - Open Yaak
-   - Go to Settings > Plugins
-   - Click "Install from folder"
-   - Select the plugin directory
-
-### Option 2: Development Mode
-
-For active development, use the dev command to watch for changes:
-```bash
-npm run dev
-```
+1. Open Yaak
+2. Go to **Settings** → **Plugins**
+3. Search for **DateAdd**
+4. Click **Install**
 
 ## Usage
 
