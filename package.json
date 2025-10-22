@@ -1,0 +1,30 @@
+{
+  "name": "@yaak/dateadd",
+  "displayName": "DateAdd",
+  "description": "Add days, months, or years to the current date and format the output",
+  "version": "1.0.0",
+  "repository": "https://github.com/yourusername/yaak-plugin-dateadd",
+  "author": "Your Name",
+  "license": "MIT",
+  "keywords": [
+    "yaak",
+    "yaak-plugin",
+    "date",
+    "time",
+    "format",
+    "template"
+  ],
+  "scripts": {
+    "build": "yaakcli build",
+    "dev": "yaakcli dev"
+  },
+  "homepage": "https://github.com/yourusername/yaak-plugin-dateadd",
+  "devDependencies": {
+    "@types/node": "^20.14.9",
+    "@yaakapp/cli": "^0.2.6",
+    "typescript": "^5.5.2"
+  },
+  "dependencies": {
+    "@yaakapp/api": "^0.6.4"
+  }
+}
