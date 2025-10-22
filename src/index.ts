@@ -4,12 +4,18 @@ export const plugin: PluginDefinition = {
   templateFunctions: [
     {
       name: 'dateAdd',
-      description: 'Add days, months, or years to the current date and format the output',
+      description: 'Add days, months, years, hours, minutes, or seconds to a date and format the output',
       args: [
         {
           type: 'text',
-          name: 'days',
-          label: 'Days',
+          name: 'dateTime',
+          label: 'Base Date/Time (optional)',
+          placeholder: 'Leave empty for current date/time',
+        },
+        {
+          type: 'text',
+          name: 'years',
+          label: 'Years',
           placeholder: '0',
         },
         {
@@ -20,28 +26,75 @@ export const plugin: PluginDefinition = {
         },
         {
           type: 'text',
-          name: 'years',
-          label: 'Years',
+          name: 'days',
+          label: 'Days',
+          placeholder: '0',
+        },
+        {
+          type: 'text',
+          name: 'hours',
+          label: 'Hours',
+          placeholder: '0',
+        },
+        {
+          type: 'text',
+          name: 'minutes',
+          label: 'Minutes',
+          placeholder: '0',
+        },
+        {
+          type: 'text',
+          name: 'seconds',
+          label: 'Seconds',
           placeholder: '0',
         },
         {
           type: 'text',
           name: 'format',
           label: 'Format',
-          placeholder: 'YYYY-MM-DD',
+          placeholder: 'YYYY-MM-DD HH:mm:ss',
         },
       ],
       async onRender(_ctx, args): Promise<string> {
-        const days = Number(args.values.days) || 0;
-        const months = Number(args.values.months) || 0;
-        const years = Number(args.values.years) || 0;
-        const format = args.values.format || 'YYYY-MM-DD';
+        // Parse the base date/time
+        let date: Date;
+        const baseDateTimeStr = args.values.dateTime?.trim();
+        
+        if (baseDateTimeStr) {
+          // Try to parse the provided date/time
+          const parsedDate = new Date(baseDateTimeStr);
+          if (isNaN(parsedDate.getTime())) {
+            throw new Error(`Invalid date/time format: "${baseDateTimeStr}". Please use ISO 8601 format or a valid date string.`);
+          }
+          date = parsedDate;
+        } else {
+          // Use current date/time
+          date = new Date();
+        }
 
-        // Create a new date and add the specified time periods
-        const date = new Date();
+        // Parse all the adjustment values
+        const years = Number(args.values.years) || 0;
+        const months = Number(args.values.months) || 0;
+        const days = Number(args.values.days) || 0;
+        const hours = Number(args.values.hours) || 0;
+        const minutes = Number(args.values.minutes) || 0;
+        const seconds = Number(args.values.seconds) || 0;
+
+        // Add the specified time periods
         date.setFullYear(date.getFullYear() + years);
         date.setMonth(date.getMonth() + months);
         date.setDate(date.getDate() + days);
+        date.setHours(date.getHours() + hours);
+        date.setMinutes(date.getMinutes() + minutes);
+        date.setSeconds(date.getSeconds() + seconds);
+
+        // Default format based on whether time components were adjusted
+        let format = args.values.format;
+        if (!format) {
+          format = (hours !== 0 || minutes !== 0 || seconds !== 0 || baseDateTimeStr)
+            ? 'YYYY-MM-DD HH:mm:ss'
+            : 'YYYY-MM-DD';
+        }
 
         // Format the date according to the specified format string
         return formatDate(date, format);

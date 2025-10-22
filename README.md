@@ -4,9 +4,11 @@ A Yaak template function plugin that allows you to manipulate dates by adding da
 
 ## Features
 
-- Add or subtract days, months, and years from the current date
+- Add or subtract years, months, days, hours, minutes, and seconds from any date/time
+- Use current date/time or provide a custom base date/time
 - Support for negative values to subtract time periods
 - Flexible date formatting with common format tokens
+- Smart default formatting (includes time if hours/minutes/seconds are used)
 - Simple and intuitive interface
 
 ## Installation

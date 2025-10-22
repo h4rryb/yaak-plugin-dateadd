@@ -2,9 +2,9 @@
   "name": "@yaak/dateadd",
   "displayName": "DateAdd",
   "description": "Add days, months, or years to the current date and format the output",
-  "version": "1.0.0",
-  "repository": "https://github.com/yourusername/yaak-plugin-dateadd",
-  "author": "Your Name",
+  "version": "0.0.2",
+  "repository": "https://github.com/h4rryb/yaak-plugin-dateadd",
+  "author": "Harry Brayford",
   "license": "MIT",
   "keywords": [
     "yaak",
@@ -18,7 +18,7 @@
     "build": "yaakcli build",
     "dev": "yaakcli dev"
   },
-  "homepage": "https://github.com/yourusername/yaak-plugin-dateadd",
+  "homepage": "https://github.com/h4rryb/yaak-plugin-dateadd",
   "devDependencies": {
     "@types/node": "^20.14.9",
     "@yaakapp/cli": "^0.2.6",
