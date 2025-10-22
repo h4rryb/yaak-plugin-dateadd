@@ -1,5 +1,5 @@
 {
-  "name": "@yaak/dateadd",
+  "name": "@harry/dateadd",
   "displayName": "DateAdd",
   "description": "Add days, months, or years to the current date and format the output",
   "version": "0.0.3",
