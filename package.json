@@ -1,8 +1,8 @@
 {
   "name": "@harry/dateadd",
-  "displayName": "DateAdd",
-  "description": "Add days, months, or years to the current date and format the output",
-  "version": "0.0.6",
+  "displayName": "Date & Time Add",
+  "description": "Add seconds, minutes, hours days, months, or years to a selected date or current date and format the output",
+  "version": "0.0.7",
   "repository": "https://github.com/h4rryb/yaak-plugin-dateadd",
   "author": "Harry Brayford",
   "license": "MIT",
